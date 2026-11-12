@@ -1,6 +1,6 @@
 # STMExplorer: multi-view graph contrastive learning of spatial transcriptomics for tumor microenvironment discovery in colorectal cancer
 
-![Figure](
+![Figure](https://github.com/erinwienke/STMExplorer/blob/main/STMExplorer.png?raw=true)
 
 ## Requirements
 
