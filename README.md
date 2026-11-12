@@ -48,7 +48,7 @@ python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations -
 ```
 
 ### Performing an ablation experiment
-**Reference: ./ablations/
+**Reference: ./ablations/**
 
 #### Feature selection experiments
 To use HVGs instead of gene clusters, run:
