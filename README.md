@@ -37,6 +37,7 @@ Replace the example paths with your file paths and set --n_clusters to the desir
 
 '''
 python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --labels data/sample_annotations.csv --n_clusters 6 --k 10 --out_dir results/sample
+...
 '''
 
 The annotation CSV must contain Barcode and Pathologist Annotations columns. 
