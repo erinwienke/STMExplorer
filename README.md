@@ -13,7 +13,7 @@ STMExplorer is an automated, reproducible framework for tumor microenvironment (
 Clone the repository or download source code files.
 
 ## Data 
-The annotated spatial transcriptomics dataset utilized in this study is available through Zenodo at [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264). The two unannotated datasets are available via the Gene Expression Omnibus (GEO) database under the accession codes of [GSE280313](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280313) and [GSE226997](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226997). Due to the size of the data, only one annotated sample (SN124_A595688_Rep2) and one unannotated sample (P2CRC from GSE280313) are included in the repository for experiment replication.
+The annotated spatial transcriptomics dataset utilized in this study is available through Zenodo at [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264). The two unannotated datasets are available via the Gene Expression Omnibus (GEO) database under the accession codes of [GSE280313](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280313) and [GSE226997](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226997). Due to the size of the data, only one annotated sample (SN124_A595688_Rep2) is included in the repository for experiment replication.
 
 ## Preprocessing 
 **Reference: ./preprocessing/**
