@@ -22,9 +22,9 @@ The input .h5ad must contain raw counts in adata.X and spatial coordinates in ad
 
 To run preprocessing use:
 
-'''
+```
 python3 -m preprocessing.preprocess --input data/sample.h5ad --output data/sample_preprocessed.h5ad
-'''
+```
 
 This saves the preprocessed .h5ad and generates the gene clusters.
 
@@ -35,18 +35,17 @@ Replace the example paths with your file paths and set --n_clusters to the desir
 
 ### For samples with annotations
 
-'''
+```
 python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --labels data/sample_annotations.csv --n_clusters 6 --k 10 --out_dir results/sample
-...
-'''
+```
 
 The annotation CSV must contain Barcode and Pathologist Annotations columns. 
 
 ### For samples without annotations
 
-'''
+```
 python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations --n_clusters 6 --k 10 --out_dir results/sample
-'''
+```
 
 ### Performing an ablation experiment
 
