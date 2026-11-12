@@ -113,20 +113,12 @@ def build_node_mask_top_p(D: np.ndarray, p: float) -> np.ndarray:
 @torch.no_grad()
 def per_view_top_p_masks_from_embeddings(z_a: torch.Tensor,
                                          z_b: torch.Tensor,
-                                         p: float,
-                                         metric: str = "cosine") -> dict:
+                                         p: float) -> dict:
     za = F.normalize(z_a, dim=1)
     zb = F.normalize(z_b, dim=1)
-    if metric == "cosine":
-        score_A = za @ za.T
-        score_B = zb @ zb.T
-        big_neg = -1e9
-    elif metric == "euclid":
-        score_A = torch.cdist(za, za, p=2)
-        score_B = torch.cdist(zb, zb, p=2)
-        big_neg = -np.inf
-    else:
-        raise ValueError("metric must be 'cosine' or 'euclid'")
+    score_A = za @ za.T
+    score_B = zb @ zb.T
+    big_neg = -1e9
 
     N = za.shape[0]
     k = max(1, int(np.ceil(p * (N - 1))))
