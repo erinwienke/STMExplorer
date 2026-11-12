@@ -17,7 +17,7 @@ def info_nce_2n(
     device = z_a.device
     N = z_a.shape[0]
 
-    # Normalize and compute 2N×2N sims
+    #Normalize and compute 2N×2N 
     z_a = F.normalize(z_a, dim=1)
     z_b = F.normalize(z_b, dim=1)
     Z = torch.cat([z_a, z_b], dim=0)                 
@@ -74,7 +74,7 @@ def info_nce_2n(
         nm_full[BB] = nm_BB
         neg_allowed = neg_allowed * nm_full
 
-    # Per-view masks (A and B) for same-view experiments or view-specific mining
+    #Per-view masks (A and B) for same-view experiments or view-specific mining
     if per_view_mask is not None:
         mA = per_view_mask.get("A", None)
         mB = per_view_mask.get("B", None)
@@ -89,7 +89,7 @@ def info_nce_2n(
             pv[BB] = pv[BB] * mB
         neg_allowed = neg_allowed * pv
 
-    # Final allowed negatives & anchors
+    #Final allowed negatives & anchors
     neg_allowed = neg_allowed * base_mask * (1.0 - pos_mask)
     anchor_rows = torch.arange(2*N, device=device) if symmetric else torch.arange(N, device=device)
 
@@ -118,12 +118,10 @@ def per_view_top_p_masks_from_embeddings(z_a: torch.Tensor,
     za = F.normalize(z_a, dim=1)
     zb = F.normalize(z_b, dim=1)
     if metric == "cosine":
-        # larger similarity = 'harder'
         score_A = za @ za.T
         score_B = zb @ zb.T
         big_neg = -1e9
     elif metric == "euclid":
-        # larger distance = 'harder'
         score_A = torch.cdist(za, za, p=2)
         score_B = torch.cdist(zb, zb, p=2)
         big_neg = -np.inf
