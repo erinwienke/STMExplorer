@@ -25,7 +25,7 @@ def cluster_genes(adata, output_prefix, k=3000):
     labels = KMeans(n_clusters=k, random_state=42, n_init="auto", max_iter=300).fit_predict(features)
     rows = []
 
-    #find median expression value of each gene clusters member genes across spots
+    #Find median expression value of each gene clusters member genes across spots
     for cid in np.unique(labels):
         ix = np.flatnonzero(labels == cid)
         block = X[ix, :]
