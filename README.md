@@ -13,15 +13,42 @@ STMExplorer is an automated, reproducible framework for tumor microenvironment (
 Clone the repository or download source code files.
 
 ## Data 
-The annotated spatial transcriptomics dataset utilized in this study is available through Zenodo at [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264). The two unannotated datasets are available via the Gene Expression Omnibus (GEO) database under the accession codes of [GSE280313](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280313) and [GSE226997](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226997). Due to the size of the data, only one sample is included in the repository for experiment replication (SN124_A595688_Rep2 from the annotated dataset).
+The annotated spatial transcriptomics dataset utilized in this study is available through Zenodo at [https://zenodo.org/records/7760264](https://zenodo.org/records/7760264). The two unannotated datasets are available via the Gene Expression Omnibus (GEO) database under the accession codes of [GSE280313](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE280313) and [GSE226997](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE226997). Due to the size of the data, only one annotated sample (SN124_A595688_Rep2) and one unannotated sample (P2CRC from GSE280313) are included in the repository for experiment replication.
 
 ## Preprocessing 
+**Reference: ./preprocessing/**
 
-## Identifying TME regions from an annotated sample
+The input .h5ad must contain raw counts in adata.X and spatial coordinates in adata.obsm["spatial"].
 
-## Identifying TME regions from an unannotated sample
+To run preprocessing use:
 
-## Performing an ablation experiment
+'''
+python3 -m preprocessing.preprocess --input data/sample.h5ad --output data/sample_preprocessed.h5ad
+'''
+
+This saves the preprocessed .h5ad and generates the gene clusters.
+
+## Run the model
+**Reference: ./crc_tme/**
+
+Replace the example paths with your file paths and set --n_clusters to the desired number of tissue groups. 
+
+### For samples with annotations
+
+'''
+python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --labels data/sample_annotations.csv --n_clusters 6 --k 10 --out_dir results/sample
+'''
+
+The annotation CSV must contain Barcode and Pathologist Annotations columns. 
+
+### For samples without annotations
+
+'''
+python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations --n_clusters 6 --k 10 --out_dir results/sample
+'''
+
+### Performing an ablation experiment
+
 
 ## Contact
 If you have any questions or problems, please send an email to erinw01 AT vt.edu
