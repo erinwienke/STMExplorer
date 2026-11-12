@@ -48,7 +48,26 @@ python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations -
 ```
 
 ### Performing an ablation experiment
+**Reference: ./ablations/
 
+#### Feature selection experiments
+To use HVGs instead of gene clusters, run:
+
+```
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --features-mode hvg --hvg 2000
+```
+
+To use PCA instead, use the tags --features-mode pca and --pca-components 50.
+
+#### Modality experiments
+
+#### Optimal neighborhood size experiments
+
+#### Contrastive pair selection experiments
+
+#### Loss function experiments
+
+#### Clustering algorithm experiments
 
 ## Contact
 If you have any questions or problems, please send an email to erinw01 AT vt.edu
