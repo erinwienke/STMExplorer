@@ -33,7 +33,7 @@ def main():
         raise RuntimeError(f"Failed to write preprocessed sample: {args.output.resolve()}")
     print(f"Saved preprocessed .h5ad: {args.output.resolve()} ({adata.n_obs} spots, {adata.n_vars} genes)", flush=True)
     from .gene_clusters import cluster_genes
-    print("Generating 3000 gene clusters; this may take a while...", flush=True)
+    print("Generating 3000 gene clusters", flush=True)
     try:
         cluster_genes(adata, args.output.with_suffix(""), k=3000)
     except Exception as exc:
