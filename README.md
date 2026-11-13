@@ -47,6 +47,10 @@ The annotation CSV must contain Barcode and Pathologist Annotations columns.
 python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations --n_clusters 6 --k 10 --out_dir results/sample
 ```
 
+
+
+
+
 ### Performing an ablation experiment
 **Reference: ./ablations/**
 
