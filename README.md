@@ -54,7 +54,7 @@ python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations -
 To use HVGs instead of gene clusters, run:
 
 ```
-python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --features-mode hvg --hvg 2000
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --features-mode hvg --hvg 2000 --out_dir results/hvgs
 ```
 
 To use PCA instead, use the tags --features-mode pca and --pca-components 50.
@@ -63,21 +63,47 @@ To use PCA instead, use the tags --features-mode pca and --pca-components 50.
 To run STMExplorer with different modalities, use the --edges tag. The options include spatial-expression, spatial, expression, deconv, lr, and all. When running deconv or lr, the file should also be specified. For example, to run only deconv edges, use:
 
 ```
-python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges deconv --deconv data/deconv_file.csv
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges deconv --deconv data/deconv_file.csv --out_dir results/modality
 ```
 
 To run all of the edges at once, use:
+
 ```
-python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges all --deconv data/deconv_file.csv --ligrec-file data/ligrec_file.csv
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges all --deconv data/deconv_file.csv --ligrec-file data/ligrec_file.csv --out_dir results/modality
 ```
 
 #### Optimal neighborhood size experiments
+To evaluate multiple neighborhood sizes, run:
+
+```
+for k in 5 10 15 20 25 30; do
+python3 -m ablations.neighborhood --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k "$k" --out_dir results/neighborhood
+```
 
 #### Contrastive pair selection experiments
+To perform the contrastive pair ablations found in the text, use:
+
+| Negative Pairs | Positive Pairs | Tags |
+| ------------ | ------------- | ------------|
+| Cross-view | Same node  | --negative-views cross |
+| View-specific | Same node  | --negative-views both --per-view-mining |
+| Both views | Closest 10%  | --positive-fraction 0.1 --positive-mining node --positive-views cross |
 
 #### Loss function experiments
+To use a spatial smoothness loss in conjunction with the contrastive loss, use the tag --lambda-smooth W_SMOOTH. To add the reconstruction loss, use --lambda-recon-adj W_ADJ and/or --lambda-recon-x W_X. 
+
+For example, the ablation that adds both reconstruction and spatial smoothness can be run with:
+
+```
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --lambda-smooth 1.0 --lambda-recon-adj 1.0 --lambda-recon-x 1.0 --out_dir results/loss
+```
 
 #### Clustering algorithm experiments
+To utilize the DEC clustering, run:
+
+```
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --dec_weight 1.0 --dec-start-epoch 50 --out_dir results/iter
+```
 
 ## Contact
 If you have any questions or problems, please send an email to erinw01 AT vt.edu
