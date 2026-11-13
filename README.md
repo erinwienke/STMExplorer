@@ -54,18 +54,22 @@ python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations -
 To use HVGs instead of gene clusters, run:
 
 ```
-python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --features-mode hvg --hvg 2000
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --features-mode hvg --hvg 2000
 ```
 
 To use PCA instead, use the tags --features-mode pca and --pca-components 50.
 
 #### Modality experiments
-To run STMExplorer with different modalities, use the --edges tag. The options include:
-| Modality | Tag |
-| ------------ | ------------- |
-| Spatial + Expression | --edges spatial-expression |
-| Content Cell | Content Cell  |
+To run STMExplorer with different modalities, use the --edges tag. The options include spatial-expression, spatial, expression, deconv, lr, and all. When running deconv or lr, the file should also be specified. For example, to run only deconv edges, use:
 
+```
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges deconv --deconv data/deconv_file.csv
+```
+
+To run all of the edges at once, use:
+```
+python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 6 --k 10 --edges all --deconv data/deconv_file.csv --ligrec-file data/ligrec_file.csv
+```
 
 #### Optimal neighborhood size experiments
 
