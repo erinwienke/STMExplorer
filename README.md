@@ -60,6 +60,12 @@ python3 -m ablations.ablation --h5ad data/sample_preprocessed.h5ad --n_clusters 
 To use PCA instead, use the tags --features-mode pca and --pca-components 50.
 
 #### Modality experiments
+To run STMExplorer with different modalities, use the --edges tag. The options include:
+| Modality | Tag |
+| ------------ | ------------- |
+| Spatial + Expression | --edges spatial-expression |
+| Content Cell | Content Cell  |
+
 
 #### Optimal neighborhood size experiments
 
