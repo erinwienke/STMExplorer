@@ -28,7 +28,7 @@ python3 -m preprocessing.preprocess --input data/sample.h5ad --output data/sampl
 
 This saves the preprocessed .h5ad and generates the gene clusters.
 
-## Run the model
+## Running the model
 **Reference: ./crc_tme/**
 
 Replace the example paths with your file paths and set --n_clusters to the desired number of tissue groups. 
@@ -46,10 +46,6 @@ The annotation CSV must contain Barcode and Pathologist Annotations columns.
 ```
 python3 -m crc_tme.model --h5ad data/sample_preprocessed.h5ad --no_annotations --n_clusters 6 --k 10 --out_dir results/sample
 ```
-
-
-
-
 
 ### Performing an ablation experiment
 **Reference: ./ablations/**
